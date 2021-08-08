@@ -173,9 +173,15 @@ namespace LogWrapperCommand
             // Return selection to line above
             txtSel.MoveToPoint(editPoint);
 
-            txtSel.Insert("prolog");
+            var prologText = ((LogWrapperCommandPackage)this.package).PrologText;
+            prologText = Substitute(prologText, function);
+            txtSel.Insert(prologText);
 
             // Epilog
+            editPoint = function.GetEndPoint().CreateEditPoint();
+            
+            lineOfCode = GetLineText(editPoint);
+
             while (lineOfCode.Trim() != "}")
             {
                 editPoint.LineDown();
@@ -195,8 +201,22 @@ namespace LogWrapperCommand
             // Move selection there
             txtSel.MoveToPoint(editPoint);
 
+            var epilogText = ((LogWrapperCommandPackage)this.package).EpilogText;
+            
+            epilogText = Substitute(epilogText, function);
+
             // Insert text
-            txtSel.Insert("epilog");
+            txtSel.Insert(epilogText);
+        }
+
+        private string Substitute(string text, CodeElement function)
+        {
+            if (text.Contains("{functionName}"))
+            {
+                text = text.Replace("{functionName}", function.Name);
+            }
+
+            return text;
         }
 
         public static string GetLineText(EditPoint point)

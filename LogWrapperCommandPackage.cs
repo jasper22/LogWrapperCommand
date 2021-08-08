@@ -28,6 +28,7 @@ namespace LogWrapperCommand
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(LogWrapperCommandPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideOptionPage(typeof(OptionsPageGrid), "LogWrapper", "Settings", 0,0, true)]
     public sealed class LogWrapperCommandPackage : AsyncPackage
     {
         /// <summary>
@@ -51,6 +52,37 @@ namespace LogWrapperCommand
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await LogWrapperCommand.InitializeAsync(this);
         }
+
+        /// <summary>
+        /// Gets the user settings for 'prolog' text.
+        /// </summary>
+        /// <value>
+        /// The user settings for 'prolog' text.
+        /// </value>
+        public string PrologText
+        {
+            get
+            {
+                var page = (OptionsPageGrid)GetDialogPage(typeof(OptionsPageGrid));
+                return page.PrologText;
+            }
+        }
+
+        /// <summary>
+        /// Gets the user settings for 'epilog' text.
+        /// </summary>
+        /// <value>
+        /// The user settings for 'epilog' text.
+        /// </value>
+        public string EpilogText
+        {
+            get
+            {
+                var page = (OptionsPageGrid)GetDialogPage(typeof(OptionsPageGrid));
+                return page.EpilogText;
+            }
+        }
+
 
         #endregion
     }
