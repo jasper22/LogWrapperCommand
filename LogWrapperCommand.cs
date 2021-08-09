@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.Globalization;
 using System.Linq;
 
 using EnvDTE;
 
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 
 using Task = System.Threading.Tasks.Task;
 
@@ -209,6 +207,12 @@ namespace LogWrapperCommand
             txtSel.Insert(epilogText);
         }
 
+        /// <summary>
+        /// Substitutes the specified text
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="function">The function.</param>
+        /// <returns></returns>
         private string Substitute(string text, CodeElement function)
         {
             if (text.Contains("{functionName}"))
@@ -219,6 +223,11 @@ namespace LogWrapperCommand
             return text;
         }
 
+        /// <summary>
+        /// Gets the text in line where provided <paramref name="point"/> stand
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <returns></returns>
         public static string GetLineText(EditPoint point)
         {
             point.StartOfLine();
