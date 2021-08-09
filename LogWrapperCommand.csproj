@@ -78,6 +78,7 @@
   <ItemGroup>
     <Content Include="Resources\book-cover.jpg" />
     <Content Include="Resources\Command1.png" />
+    <Content Include="Resources\OptionsDialog.png" />
     <Content Include="Resources\screenshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -38,6 +38,14 @@ Please note that those two line `prolog` and `epilog` was dynamically inserted.
 ![Screenshot](Resources/screenshot.png)
 
 
+You could change the text in `prolog` and `epilog` in `Tools` -> `Options` dialog:
+
+![Options.dialog](Resources/OptionsDialog.png)
+
+text typed as `{functionName}` will be replaced by actual function name at run time
+
+
+
 ### The motivation sources
 
 ![Book cover](Resources/book-cover.jpg)
